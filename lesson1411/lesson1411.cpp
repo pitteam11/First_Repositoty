@@ -2,6 +2,7 @@
 #include "my_test.h"
 #include <time.h>
 #include <vector>
+#include <bitset>
 
 #define DEBUG
 
@@ -39,23 +40,46 @@ MYFACTORY(new_fun, 4)
 
 int main()
 {
-    std::cout << new_fun1() << std::endl;
+    unsigned char val1 = 0b11110000; // 0xFF // 255 //;
+    val1 = val1 | 0b10111001;
 
+    std::cout << std::bitset<8>{(val1)} << std::endl;
+    std::cout << std::bitset<8>{(val1)} << std::endl;
+
+    unsigned int val = 13;
+    unsigned int val4 = val >> 1;
+    unsigned int val5 = val << 1;
+
+    std::cout << "out bin-shift:" << std::endl;
+    std::cout << std::bitset<32>{(val)} << " " << val << std::endl;
+    std::cout << std::bitset<32>{(val4)} << " " << val4 << std::endl;
+    std::cout << std::bitset<32>{(val5)} << " " << val5 << std::endl;
+
+
+    std::cout << std::bitset<32>{(0x03 << 13)} << " " << std::endl;
+
+    val <<= 3;  
+
+
+}
+
+void test_preprocessor() {
+    std::cout << new_fun1() << std::endl;
     std::cout << my_global_value << std::endl;
     std::cout << "Hello World!\n";
     std::cout << "Hello " << MY_NAME << "!\n";
-    std::cout << QUBE(2+1) << std::endl; // 2+1*2+1*2+1
+    std::cout << QUBE(2 + 1) << std::endl; // 2+1*2+1*2+1
     srand(time(0));
     for (int k = 0; k < 10; k++) {
         std::cout << RAND(-10, 10) << " ";
     }
     std::cout << std::endl;
-    
+
     int arr[5]{ 1,2,3,4,5 };
     std::vector<int> my_vector(5);
-        
+
     /*
-    my_vector[0] = 12;    
+    my_vector[0] = 12;
     my_vector[1] = 13;
     my_vector[2] = 7;
     my_vector[3] = 4;
@@ -64,7 +88,7 @@ int main()
 
     typedef std::vector<std::vector<int>> matr;
     matr Matr;
-    
+
     for (int k = 0; k < my_vector.size(); k++) {
         std::cout << my_vector[k] << " ";
     }
@@ -75,14 +99,8 @@ int main()
     }
 #if 0 
 #error Это ошибка
-
-    //#ifndef // если макрос DEBUG - НЕ обявлен, то выполняем до #endif или #else до 
-
+//#ifndef // если макрос DEBUG - НЕ обявлен, то выполняем до #endif или #else до 
 //#ifdef DEBUG  // если макрос DEBUG - обявлен, то выполняем до #endif или #else до 
-
 #else
-
 #endif // DEBUG
-
-
 }
